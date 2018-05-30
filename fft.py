@@ -162,6 +162,19 @@ class fMain(QtGui.QDialog):
         self.fraResults.setTitle(QtGui.QApplication.translate("fMain", "Results", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyRx.setText(QtGui.QApplication.translate("fMain", "R(x) =", None, QtGui.QApplication.UnicodeUTF8))
 
+    @QtCore.Slot()
+    def on_cmdLoadPolyPx_clicked(self):
+        print("poly_px")
+
+    @QtCore.Slot()
+    def on_cmdLoadPolyQx_clicked(self):
+        print("poly_qx")
+
+    @QtCore.Slot()
+    def on_cmdMultiply_clicked(self):
+        print("multiply")
+
+
 def main():
     app = QtGui.QApplication(sys.argv)
     f = fMain()
