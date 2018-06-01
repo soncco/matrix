@@ -111,7 +111,11 @@ class fMain(QtGui.QDialog):
         self.txtPolyRx.setObjectName("txtPolyRx")
         self.horizontalLayout_5.addWidget(self.txtPolyRx)
         self.verticalLayout_8.addLayout(self.horizontalLayout_5)
+        font = QtGui.QFont()
+        font.setFamily("Ubuntu Mono")
+        font.setPointSize(12)
         self.txtProcess = QtGui.QPlainTextEdit(self.fraResults)
+        self.txtProcess.setFont(font)
         self.txtProcess.setReadOnly(True)
         self.txtProcess.setObjectName("txtProcess")
         self.verticalLayout_8.addWidget(self.txtProcess)
@@ -190,12 +194,12 @@ class fMain(QtGui.QDialog):
         out += "vandermond: \n"
         out += str(vnd) + "\n"
 
-        # DFT a1
+        # DFT p
         dftp = vnd * p
         out += "dftp:\n"
         out += str(dftp) + "\n"
 
-        # DFT a2
+        # DFT q
         dftq = vnd * q
         out += "dftq:\n"
         out += str(dftq) + "\n"
