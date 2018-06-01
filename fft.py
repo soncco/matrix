@@ -2,6 +2,8 @@
 
 import os
 import sys
+import numpy as np
+from sympy import Symbol,expand
 from PySide import QtCore, QtGui
 
 class fMain(QtGui.QDialog):
@@ -164,15 +166,26 @@ class fMain(QtGui.QDialog):
 
     @QtCore.Slot()
     def on_cmdLoadPolyPx_clicked(self):
-        print("poly_px")
+        if self.txtPolyPx.text() == "":
+            return
+        else:
+            self.px = np.array( map( int, self.txtPolyPx.text().split() ) )
+            self.txtPolyPxFull.setText(str(np.poly1d(self.px)))
 
     @QtCore.Slot()
     def on_cmdLoadPolyQx_clicked(self):
-        print("poly_qx")
+        if self.txtPolyQx.text() == "":
+            return
+        else:
+            self.qx = np.array( map( int, self.txtPolyQx.text().split() ) )
+            x=Symbol('x')
+            self.txtPolyQxFull.setText( str (expand( np.poly1d(self.qx)(x)) ) )
 
     @QtCore.Slot()
     def on_cmdMultiply_clicked(self):
-        print("multiply")
+        self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
+        x=Symbol('x')
+        self.txtPolyRx.setText( str(expand(self.rx(x))) )
 
 
 def main():
