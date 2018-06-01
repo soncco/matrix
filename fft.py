@@ -14,7 +14,7 @@ class fMain(QtGui.QDialog):
     def setupUi(self, fMain):
         fMain.setObjectName("fMain")
         fMain.setWindowModality(QtCore.Qt.ApplicationModal)
-        fMain.resize(766, 430)
+        fMain.resize(639, 557)
         self.verticalLayout_10 = QtGui.QVBoxLayout(fMain)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.verticalLayout = QtGui.QVBoxLayout()
@@ -44,17 +44,11 @@ class fMain(QtGui.QDialog):
         self.txtPolyPx = QtGui.QLineEdit(self.pnlPolyPx)
         self.txtPolyPx.setObjectName("txtPolyPx")
         self.horizontalLayout.addWidget(self.txtPolyPx)
-        self.cmdLoadPolyPx = QtGui.QPushButton(self.pnlPolyPx)
-        self.cmdLoadPolyPx.setAutoDefault(False)
-        self.cmdLoadPolyPx.setObjectName("cmdLoadPolyPx")
-        self.horizontalLayout.addWidget(self.cmdLoadPolyPx)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.txtPolyPxFull = QtGui.QLineEdit(self.pnlPolyPx)
         self.txtPolyPxFull.setReadOnly(True)
         self.txtPolyPxFull.setObjectName("txtPolyPxFull")
         self.verticalLayout_2.addWidget(self.txtPolyPxFull)
-        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem)
         self.verticalLayout_4.addLayout(self.verticalLayout_2)
         self.verticalLayout_6.addWidget(self.pnlPolyPx)
         self.pnlPolyQx = QtGui.QFrame(self.fraInputs)
@@ -73,21 +67,13 @@ class fMain(QtGui.QDialog):
         self.txtPolyQx = QtGui.QLineEdit(self.pnlPolyQx)
         self.txtPolyQx.setObjectName("txtPolyQx")
         self.horizontalLayout_2.addWidget(self.txtPolyQx)
-        self.cmdLoadPolyQx = QtGui.QPushButton(self.pnlPolyQx)
-        self.cmdLoadPolyQx.setAutoDefault(False)
-        self.cmdLoadPolyQx.setObjectName("cmdLoadPolyQx")
-        self.horizontalLayout_2.addWidget(self.cmdLoadPolyQx)
         self.verticalLayout_3.addLayout(self.horizontalLayout_2)
         self.txtPolyQxFull = QtGui.QLineEdit(self.pnlPolyQx)
         self.txtPolyQxFull.setReadOnly(True)
         self.txtPolyQxFull.setObjectName("txtPolyQxFull")
         self.verticalLayout_3.addWidget(self.txtPolyQxFull)
-        spacerItem1 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem1)
         self.verticalLayout_5.addLayout(self.verticalLayout_3)
         self.verticalLayout_6.addWidget(self.pnlPolyQx)
-        spacerItem2 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_6.addItem(spacerItem2)
         self.lblDetail2 = QtGui.QLabel(self.fraInputs)
         self.lblDetail2.setObjectName("lblDetail2")
         self.verticalLayout_6.addWidget(self.lblDetail2)
@@ -99,25 +85,12 @@ class fMain(QtGui.QDialog):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.chkMethod1 = QtGui.QCheckBox(self.pnlMethods)
-        self.chkMethod1.setObjectName("chkMethod1")
-        self.horizontalLayout_3.addWidget(self.chkMethod1)
-        self.chkMethod2 = QtGui.QCheckBox(self.pnlMethods)
-        self.chkMethod2.setObjectName("chkMethod2")
-        self.horizontalLayout_3.addWidget(self.chkMethod2)
-        self.chkMethod3 = QtGui.QCheckBox(self.pnlMethods)
-        self.chkMethod3.setObjectName("chkMethod3")
-        self.horizontalLayout_3.addWidget(self.chkMethod3)
-        self.chkMethod4 = QtGui.QCheckBox(self.pnlMethods)
-        self.chkMethod4.setObjectName("chkMethod4")
-        self.horizontalLayout_3.addWidget(self.chkMethod4)
-        spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem3)
-        self.cmdMultiply = QtGui.QPushButton(self.pnlMethods)
-        self.cmdMultiply.setAutoDefault(False)
-        self.cmdMultiply.setDefault(True)
-        self.cmdMultiply.setObjectName("cmdMultiply")
-        self.horizontalLayout_3.addWidget(self.cmdMultiply)
+        self.cmdFFT = QtGui.QPushButton(self.pnlMethods)
+        self.cmdFFT.setEnabled(False)
+        self.cmdFFT.setAutoDefault(False)
+        self.cmdFFT.setDefault(True)
+        self.cmdFFT.setObjectName("cmdFFT")
+        self.horizontalLayout_3.addWidget(self.cmdFFT)
         self.horizontalLayout_4.addLayout(self.horizontalLayout_3)
         self.verticalLayout_6.addWidget(self.pnlMethods)
         self.verticalLayout_7.addLayout(self.verticalLayout_6)
@@ -138,8 +111,10 @@ class fMain(QtGui.QDialog):
         self.txtPolyRx.setObjectName("txtPolyRx")
         self.horizontalLayout_5.addWidget(self.txtPolyRx)
         self.verticalLayout_8.addLayout(self.horizontalLayout_5)
-        spacerItem4 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_8.addItem(spacerItem4)
+        self.txtProcess = QtGui.QPlainTextEdit(self.fraResults)
+        self.txtProcess.setReadOnly(True)
+        self.txtProcess.setObjectName("txtProcess")
+        self.verticalLayout_8.addWidget(self.txtProcess)
         self.verticalLayout_9.addLayout(self.verticalLayout_8)
         self.verticalLayout.addWidget(self.fraResults)
         self.verticalLayout_10.addLayout(self.verticalLayout)
@@ -152,40 +127,92 @@ class fMain(QtGui.QDialog):
         self.fraInputs.setTitle(QtGui.QApplication.translate("fMain", "Inputs", None, QtGui.QApplication.UnicodeUTF8))
         self.lblDetail.setText(QtGui.QApplication.translate("fMain", "Enter two polynomials:", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyPx.setText(QtGui.QApplication.translate("fMain", "P(x) =", None, QtGui.QApplication.UnicodeUTF8))
-        self.cmdLoadPolyPx.setText(QtGui.QApplication.translate("fMain", "Load", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyQx.setText(QtGui.QApplication.translate("fMain", "Q(x) =", None, QtGui.QApplication.UnicodeUTF8))
-        self.cmdLoadPolyQx.setText(QtGui.QApplication.translate("fMain", "Load", None, QtGui.QApplication.UnicodeUTF8))
         self.lblDetail2.setText(QtGui.QApplication.translate("fMain", "Select method(s):", None, QtGui.QApplication.UnicodeUTF8))
-        self.chkMethod1.setText(QtGui.QApplication.translate("fMain", "Method1", None, QtGui.QApplication.UnicodeUTF8))
-        self.chkMethod2.setText(QtGui.QApplication.translate("fMain", "Method2", None, QtGui.QApplication.UnicodeUTF8))
-        self.chkMethod3.setText(QtGui.QApplication.translate("fMain", "Method3", None, QtGui.QApplication.UnicodeUTF8))
-        self.chkMethod4.setText(QtGui.QApplication.translate("fMain", "Method4", None, QtGui.QApplication.UnicodeUTF8))
-        self.cmdMultiply.setText(QtGui.QApplication.translate("fMain", "Multiply", None, QtGui.QApplication.UnicodeUTF8))
+        self.cmdFFT.setText(QtGui.QApplication.translate("fMain", "FFT", None, QtGui.QApplication.UnicodeUTF8))
         self.fraResults.setTitle(QtGui.QApplication.translate("fMain", "Results", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyRx.setText(QtGui.QApplication.translate("fMain", "R(x) =", None, QtGui.QApplication.UnicodeUTF8))
 
     @QtCore.Slot()
-    def on_cmdLoadPolyPx_clicked(self):
-        if self.txtPolyPx.text() == "":
-            return
-        else:
+    def on_txtPolyPx_textChanged(self):
+        try:
             self.px = np.array( map( int, self.txtPolyPx.text().split() ) )
-            self.txtPolyPxFull.setText(str(np.poly1d(self.px)))
+            x=Symbol('x')
+            self.txtPolyPxFull.setText( str (expand( np.poly1d(self.px)(x)) ) )
+        except:
+            pass
+
+        if (self.txtPolyPxFull.text() != "") and (self.txtPolyQxFull.text() != ""):
+            self.cmdFFT.setEnabled(True)
+        else:
+            self.cmdFFT.setEnabled(False)
 
     @QtCore.Slot()
-    def on_cmdLoadPolyQx_clicked(self):
-        if self.txtPolyQx.text() == "":
-            return
-        else:
+    def on_txtPolyQx_textChanged(self):
+        try:
             self.qx = np.array( map( int, self.txtPolyQx.text().split() ) )
             x=Symbol('x')
             self.txtPolyQxFull.setText( str (expand( np.poly1d(self.qx)(x)) ) )
+        except:
+            pass
+
+        if (self.txtPolyPxFull.text() != "") and (self.txtPolyQxFull.text() != ""):
+            self.cmdFFT.setEnabled(True)
+        else:
+            self.cmdFFT.setEnabled(False)
 
     @QtCore.Slot()
-    def on_cmdMultiply_clicked(self):
+    def on_cmdFFT_clicked(self):
+        out = ""
+        # Tamanio de matriz (n)        
+        n = 0
+        n = len(self.px)
+        if n < len(self.qx):
+            n = len(self.qx)
+        n *= 2
+        out += "orden n: " + str(n) + "\n"
+
+        # Polinominios a matriz nx1
+        p = self.px[::-1]
+        q = self.qx[::-1]
+        for i in range(n):
+                p = np.append(p, [0])
+                q = np.append(q, [0])
+        p = np.matrix(p[:4]).transpose()
+        q = np.matrix(q[:4]).transpose()
+        out += "coeficientes p:\n"
+        out += str(p) + "\n"
+        out += "coeficientes q:\n"
+        out += str(q) + "\n"
+
+        # Matriz vandermode
+        vnd = np.matrix(np.vander(range(n), increasing=True))
+        out += "vandermond: \n"
+        out += str(vnd) + "\n"
+
+        # DFT a1
+        dftp = vnd * p
+        out += "dftp:\n"
+        out += str(dftp) + "\n"
+
+        # DFT a2
+        dftq = vnd * q
+        out += "dftq:\n"
+        out += str(dftq) + "\n"
+
+        # Producto escalar
+        yk = np.multiply(dftp, dftq)
+        out += "yk:\n"
+        out += str(yk) + "\n"
+
+        a = vnd.I*yk
+        out += "a:\n"
+        out += str(a) + "\n"
+
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
         x=Symbol('x')
         self.txtPolyRx.setText( str(expand(self.rx(x))) )
+        self.txtProcess.setPlainText( out )
 
 
 def main():

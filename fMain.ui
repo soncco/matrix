@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>766</width>
-    <height>430</height>
+    <width>639</width>
+    <height>557</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,16 +57,6 @@
                  <item>
                   <widget class="QLineEdit" name="txtPolyPx"/>
                  </item>
-                 <item>
-                  <widget class="QPushButton" name="cmdLoadPolyPx">
-                   <property name="text">
-                    <string>Load</string>
-                   </property>
-                   <property name="autoDefault">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </item>
                <item>
@@ -76,25 +66,9 @@
                  </property>
                 </widget>
                </item>
-               <item>
-                <spacer name="verticalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
               </layout>
              </item>
             </layout>
-            <zorder>txtPolyPxFull</zorder>
-            <zorder>horizontalLayoutWidget</zorder>
-            <zorder>verticalLayoutWidget_2</zorder>
            </widget>
           </item>
           <item>
@@ -120,16 +94,6 @@
                  <item>
                   <widget class="QLineEdit" name="txtPolyQx"/>
                  </item>
-                 <item>
-                  <widget class="QPushButton" name="cmdLoadPolyQx">
-                   <property name="text">
-                    <string>Load</string>
-                   </property>
-                   <property name="autoDefault">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </item>
                <item>
@@ -139,36 +103,10 @@
                  </property>
                 </widget>
                </item>
-               <item>
-                <spacer name="verticalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
               </layout>
              </item>
             </layout>
            </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item>
            <widget class="QLabel" name="lblDetail2">
@@ -189,50 +127,12 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
-                <widget class="QCheckBox" name="chkMethod1">
+                <widget class="QPushButton" name="cmdFFT">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
-                  <string>Method1</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="chkMethod2">
-                 <property name="text">
-                  <string>Method2</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="chkMethod3">
-                 <property name="text">
-                  <string>Method3</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="chkMethod4">
-                 <property name="text">
-                  <string>Method4</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="cmdMultiply">
-                 <property name="text">
-                  <string>Multiply</string>
+                  <string>FFT</string>
                  </property>
                  <property name="autoDefault">
                   <bool>false</bool>
@@ -250,8 +150,6 @@
          </layout>
         </item>
        </layout>
-       <zorder>pnlPolyPx</zorder>
-       <zorder>verticalLayoutWidget_4</zorder>
       </widget>
      </item>
      <item>
@@ -281,17 +179,11 @@
            </layout>
           </item>
           <item>
-           <spacer name="verticalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
+           <widget class="QPlainTextEdit" name="txtProcess">
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
+           </widget>
           </item>
          </layout>
         </item>
