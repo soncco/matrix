@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 from numpy.polynomial import Polynomial as P
 p = P([6, 7, -10, 9])

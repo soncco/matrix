@@ -1,4 +1,2 @@
-apt install python3-pyside
-apt install python3-numpy
-apt install python3-scipy
-apt install python3-matplotlib
+pyside
+numpy
