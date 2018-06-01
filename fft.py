@@ -168,6 +168,7 @@ class fMain(QtGui.QDialog):
     @QtCore.Slot()
     def on_cmdFFT_clicked(self):
         out = ""
+        np.set_printoptions(precision=4)
         # Tamanio de matriz (n)        
         n = 0
         n = len(self.px)
@@ -182,8 +183,8 @@ class fMain(QtGui.QDialog):
         for i in range(n):
                 p = np.append(p, [0])
                 q = np.append(q, [0])
-        p = np.matrix(p[:4]).transpose()
-        q = np.matrix(q[:4]).transpose()
+        p = np.matrix(p[:n]).transpose()
+        q = np.matrix(q[:n]).transpose()
         out += "coeficientes p:\n"
         out += str(p) + "\n"
         out += "coeficientes q:\n"
@@ -211,7 +212,7 @@ class fMain(QtGui.QDialog):
 
         a = vnd.I*yk
         out += "a:\n"
-        out += str(a) + "\n"
+        out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
         x=Symbol('x')
