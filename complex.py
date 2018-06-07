@@ -48,9 +48,13 @@ def complex_matrix(n):
     return matrix
 
 
-m = complex_matrix(32)
+m = complex_matrix(4)
 print m
 
-i = det(m)
+i = inv(m)
 
 print i
+
+d = det(m)
+
+print d
