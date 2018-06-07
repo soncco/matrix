@@ -6,6 +6,9 @@ import numpy as np
 from sympy import Symbol,expand
 from PySide import QtCore, QtGui
 
+from complex import complex_matrix
+from numpy.linalg import inv
+
 class fMain(QtGui.QDialog):
     def __init__(self, parent = None):
         QtGui.QDialog.__init__(self, parent)
@@ -256,7 +259,57 @@ class fMain(QtGui.QDialog):
 
     @QtCore.Slot()
     def on_cmdFFTi_clicked(self):
-        print("FFT imaginario")
+        out = ""
+        np.set_printoptions(precision=4)
+        # Tamanio de matriz (n)
+        n = 0
+        n = len(self.px)
+        if n < len(self.qx):
+            n = len(self.qx)
+        n *= 2
+        out += "orden n: " + str(n) + "\n"
+
+        # Polinominios a matriz nx1
+        p = self.px[::-1]
+        q = self.qx[::-1]
+        for i in range(n):
+                p = np.append(p, [0])
+                q = np.append(q, [0])
+        p = np.matrix(p[:n]).transpose()
+        q = np.matrix(q[:n]).transpose()
+        out += "coeficientes p:\n"
+        out += str(p) + "\n"
+        out += "coeficientes q:\n"
+        out += str(q) + "\n"
+
+        # Matriz vandermode
+        vnd = complex_matrix(n)
+        out += "vandermond: \n"
+        out += str(vnd) + "\n"
+
+        # DFT p
+        dftp = vnd * p
+        out += "dftp:\n"
+        out += str(dftp) + "\n"
+
+        # DFT q
+        dftq = vnd * q
+        out += "dftq:\n"
+        out += str(dftq) + "\n"
+
+        # Producto escalar
+        yk = np.multiply(dftp, dftq)
+        out += "yk:\n"
+        out += str(yk) + "\n"
+
+        a = inv(vnd)*yk
+        out += "a:\n"
+        out += str(np.around(a, decimals=2)) + "\n"
+
+        self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
+        x = Symbol('x')
+        self.txtPolyRx.setText(str(expand(self.rx(x))))
+        self.txtProcess.setPlainText(out)
     
     @QtCore.Slot()
     def on_cmdBitReverso_clicked(self):
