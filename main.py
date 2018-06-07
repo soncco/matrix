@@ -14,7 +14,7 @@ class fMain(QtGui.QDialog):
     def setupUi(self, fMain):
         fMain.setObjectName("fMain")
         fMain.setWindowModality(QtCore.Qt.ApplicationModal)
-        fMain.resize(639, 557)
+        fMain.resize(569, 504)
         self.verticalLayout_10 = QtGui.QVBoxLayout(fMain)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.verticalLayout = QtGui.QVBoxLayout()
@@ -42,13 +42,18 @@ class fMain(QtGui.QDialog):
         self.lblPolyPx.setObjectName("lblPolyPx")
         self.horizontalLayout.addWidget(self.lblPolyPx)
         self.txtPolyPx = QtGui.QLineEdit(self.pnlPolyPx)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.txtPolyPx.sizePolicy().hasHeightForWidth())
+        self.txtPolyPx.setSizePolicy(sizePolicy)
         self.txtPolyPx.setObjectName("txtPolyPx")
         self.horizontalLayout.addWidget(self.txtPolyPx)
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.txtPolyPxFull = QtGui.QLineEdit(self.pnlPolyPx)
         self.txtPolyPxFull.setReadOnly(True)
         self.txtPolyPxFull.setObjectName("txtPolyPxFull")
-        self.verticalLayout_2.addWidget(self.txtPolyPxFull)
+        self.horizontalLayout.addWidget(self.txtPolyPxFull)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.verticalLayout_4.addLayout(self.verticalLayout_2)
         self.verticalLayout_6.addWidget(self.pnlPolyPx)
         self.pnlPolyQx = QtGui.QFrame(self.fraInputs)
@@ -65,13 +70,18 @@ class fMain(QtGui.QDialog):
         self.lblPolyQx.setObjectName("lblPolyQx")
         self.horizontalLayout_2.addWidget(self.lblPolyQx)
         self.txtPolyQx = QtGui.QLineEdit(self.pnlPolyQx)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.txtPolyQx.sizePolicy().hasHeightForWidth())
+        self.txtPolyQx.setSizePolicy(sizePolicy)
         self.txtPolyQx.setObjectName("txtPolyQx")
         self.horizontalLayout_2.addWidget(self.txtPolyQx)
-        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
         self.txtPolyQxFull = QtGui.QLineEdit(self.pnlPolyQx)
         self.txtPolyQxFull.setReadOnly(True)
         self.txtPolyQxFull.setObjectName("txtPolyQxFull")
-        self.verticalLayout_3.addWidget(self.txtPolyQxFull)
+        self.horizontalLayout_2.addWidget(self.txtPolyQxFull)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
         self.verticalLayout_5.addLayout(self.verticalLayout_3)
         self.verticalLayout_6.addWidget(self.pnlPolyQx)
         self.lblDetail2 = QtGui.QLabel(self.fraInputs)
@@ -85,12 +95,24 @@ class fMain(QtGui.QDialog):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.cmdLagrange = QtGui.QPushButton(self.pnlMethods)
+        self.cmdLagrange.setEnabled(False)
+        self.cmdLagrange.setObjectName("cmdLagrange")
+        self.horizontalLayout_3.addWidget(self.cmdLagrange)
         self.cmdFFT = QtGui.QPushButton(self.pnlMethods)
         self.cmdFFT.setEnabled(False)
         self.cmdFFT.setAutoDefault(False)
         self.cmdFFT.setDefault(True)
         self.cmdFFT.setObjectName("cmdFFT")
         self.horizontalLayout_3.addWidget(self.cmdFFT)
+        self.cmdFFTi = QtGui.QPushButton(self.pnlMethods)
+        self.cmdFFTi.setEnabled(False)
+        self.cmdFFTi.setObjectName("cmdFFTi")
+        self.horizontalLayout_3.addWidget(self.cmdFFTi)
+        self.cmdBitReverso = QtGui.QPushButton(self.pnlMethods)
+        self.cmdBitReverso.setEnabled(False)
+        self.cmdBitReverso.setObjectName("cmdBitReverso")
+        self.horizontalLayout_3.addWidget(self.cmdBitReverso)
         self.horizontalLayout_4.addLayout(self.horizontalLayout_3)
         self.verticalLayout_6.addWidget(self.pnlMethods)
         self.verticalLayout_7.addLayout(self.verticalLayout_6)
@@ -111,10 +133,10 @@ class fMain(QtGui.QDialog):
         self.txtPolyRx.setObjectName("txtPolyRx")
         self.horizontalLayout_5.addWidget(self.txtPolyRx)
         self.verticalLayout_8.addLayout(self.horizontalLayout_5)
+        self.txtProcess = QtGui.QPlainTextEdit(self.fraResults)
         font = QtGui.QFont()
         font.setFamily("Ubuntu Mono")
         font.setPointSize(12)
-        self.txtProcess = QtGui.QPlainTextEdit(self.fraResults)
         self.txtProcess.setFont(font)
         self.txtProcess.setReadOnly(True)
         self.txtProcess.setObjectName("txtProcess")
@@ -133,9 +155,18 @@ class fMain(QtGui.QDialog):
         self.lblPolyPx.setText(QtGui.QApplication.translate("fMain", "P(x) =", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyQx.setText(QtGui.QApplication.translate("fMain", "Q(x) =", None, QtGui.QApplication.UnicodeUTF8))
         self.lblDetail2.setText(QtGui.QApplication.translate("fMain", "Select method(s):", None, QtGui.QApplication.UnicodeUTF8))
+        self.cmdLagrange.setText(QtGui.QApplication.translate("fMain", "Lagrange", None, QtGui.QApplication.UnicodeUTF8))
         self.cmdFFT.setText(QtGui.QApplication.translate("fMain", "FFT", None, QtGui.QApplication.UnicodeUTF8))
+        self.cmdFFTi.setText(QtGui.QApplication.translate("fMain", "FFT(i)", None, QtGui.QApplication.UnicodeUTF8))
+        self.cmdBitReverso.setText(QtGui.QApplication.translate("fMain", "Bit reverse", None, QtGui.QApplication.UnicodeUTF8))
         self.fraResults.setTitle(QtGui.QApplication.translate("fMain", "Results", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyRx.setText(QtGui.QApplication.translate("fMain", "R(x) =", None, QtGui.QApplication.UnicodeUTF8))
+
+    def methodsEnabled(self, value):
+        self.cmdLagrange.setEnabled(value)
+        self.cmdFFT.setEnabled(value)
+        self.cmdFFTi.setEnabled(value)
+        self.cmdBitReverso.setEnabled(value)
 
     @QtCore.Slot()
     def on_txtPolyPx_textChanged(self):
@@ -147,9 +178,9 @@ class fMain(QtGui.QDialog):
             pass
 
         if (self.txtPolyPxFull.text() != "") and (self.txtPolyQxFull.text() != ""):
-            self.cmdFFT.setEnabled(True)
+            self.methodsEnabled(True)
         else:
-            self.cmdFFT.setEnabled(False)
+            self.methodsEnabled(False)
 
     @QtCore.Slot()
     def on_txtPolyQx_textChanged(self):
@@ -161,9 +192,13 @@ class fMain(QtGui.QDialog):
             pass
 
         if (self.txtPolyPxFull.text() != "") and (self.txtPolyQxFull.text() != ""):
-            self.cmdFFT.setEnabled(True)
+            self.methodsEnabled(True)
         else:
-            self.cmdFFT.setEnabled(False)
+            self.methodsEnabled(False)
+
+    @QtCore.Slot()
+    def on_cmdLagrange_clicked(self):
+        print("lagrange")
 
     @QtCore.Slot()
     def on_cmdFFT_clicked(self):
@@ -218,6 +253,14 @@ class fMain(QtGui.QDialog):
         x=Symbol('x')
         self.txtPolyRx.setText( str(expand(self.rx(x))) )
         self.txtProcess.setPlainText( out )
+
+    @QtCore.Slot()
+    def on_cmdFFTi_clicked(self):
+        print("FFT imaginario")
+    
+    @QtCore.Slot()
+    def on_cmdBitReverso_clicked(self):
+        print("Bit reverso")
 
 
 def main():

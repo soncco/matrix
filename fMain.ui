@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>639</width>
-    <height>557</height>
+    <width>569</width>
+    <height>504</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,16 +55,23 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="txtPolyPx"/>
+                  <widget class="QLineEdit" name="txtPolyPx">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="txtPolyPxFull">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="txtPolyPxFull">
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                </widget>
                </item>
               </layout>
              </item>
@@ -92,16 +99,23 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="txtPolyQx"/>
+                  <widget class="QLineEdit" name="txtPolyQx">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="txtPolyQxFull">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="txtPolyQxFull">
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                </widget>
                </item>
               </layout>
              </item>
@@ -127,6 +141,16 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
+                <widget class="QPushButton" name="cmdLagrange">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Lagrange</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="cmdFFT">
                  <property name="enabled">
                   <bool>false</bool>
@@ -139,6 +163,26 @@
                  </property>
                  <property name="default">
                   <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="cmdFFTi">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>FFT(i)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="cmdBitReverso">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Bit reverse</string>
                  </property>
                 </widget>
                </item>
