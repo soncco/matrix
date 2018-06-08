@@ -5,7 +5,6 @@ import sys
 import numpy as np
 from sympy import Symbol,expand
 from PySide import QtCore, QtGui
-
 from complex import complex_matrix
 from numpy.linalg import inv
 
@@ -31,24 +30,6 @@ class fMain(QtGui.QDialog):
         self.lblDetail = QtGui.QLabel(self.fraInputs)
         self.lblDetail.setObjectName("lblDetail")
         self.verticalLayout_6.addWidget(self.lblDetail)
-        self.horizontalLayout_2 = QtGui.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.lblPolyQx = QtGui.QLabel(self.fraInputs)
-        self.lblPolyQx.setObjectName("lblPolyQx")
-        self.horizontalLayout_2.addWidget(self.lblPolyQx)
-        self.txtPolyQx = QtGui.QLineEdit(self.fraInputs)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.txtPolyQx.sizePolicy().hasHeightForWidth())
-        self.txtPolyQx.setSizePolicy(sizePolicy)
-        self.txtPolyQx.setObjectName("txtPolyQx")
-        self.horizontalLayout_2.addWidget(self.txtPolyQx)
-        self.txtPolyQxFull = QtGui.QLineEdit(self.fraInputs)
-        self.txtPolyQxFull.setReadOnly(True)
-        self.txtPolyQxFull.setObjectName("txtPolyQxFull")
-        self.horizontalLayout_2.addWidget(self.txtPolyQxFull)
-        self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.lblPolyPx = QtGui.QLabel(self.fraInputs)
@@ -67,6 +48,24 @@ class fMain(QtGui.QDialog):
         self.txtPolyPxFull.setObjectName("txtPolyPxFull")
         self.horizontalLayout.addWidget(self.txtPolyPxFull)
         self.verticalLayout_6.addLayout(self.horizontalLayout)
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.lblPolyQx = QtGui.QLabel(self.fraInputs)
+        self.lblPolyQx.setObjectName("lblPolyQx")
+        self.horizontalLayout_2.addWidget(self.lblPolyQx)
+        self.txtPolyQx = QtGui.QLineEdit(self.fraInputs)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.txtPolyQx.sizePolicy().hasHeightForWidth())
+        self.txtPolyQx.setSizePolicy(sizePolicy)
+        self.txtPolyQx.setObjectName("txtPolyQx")
+        self.horizontalLayout_2.addWidget(self.txtPolyQx)
+        self.txtPolyQxFull = QtGui.QLineEdit(self.fraInputs)
+        self.txtPolyQxFull.setReadOnly(True)
+        self.txtPolyQxFull.setObjectName("txtPolyQxFull")
+        self.horizontalLayout_2.addWidget(self.txtPolyQxFull)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         self.lblDetail2 = QtGui.QLabel(self.fraInputs)
         self.lblDetail2.setObjectName("lblDetail2")
         self.verticalLayout_6.addWidget(self.lblDetail2)
@@ -131,8 +130,8 @@ class fMain(QtGui.QDialog):
         fMain.setWindowTitle(QtGui.QApplication.translate("fMain", "Multiplication of polynomials", None, QtGui.QApplication.UnicodeUTF8))
         self.fraInputs.setTitle(QtGui.QApplication.translate("fMain", "Inputs", None, QtGui.QApplication.UnicodeUTF8))
         self.lblDetail.setText(QtGui.QApplication.translate("fMain", "Enter two polynomials:", None, QtGui.QApplication.UnicodeUTF8))
-        self.lblPolyQx.setText(QtGui.QApplication.translate("fMain", "Q(x) =", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyPx.setText(QtGui.QApplication.translate("fMain", "P(x) =", None, QtGui.QApplication.UnicodeUTF8))
+        self.lblPolyQx.setText(QtGui.QApplication.translate("fMain", "Q(x) =", None, QtGui.QApplication.UnicodeUTF8))
         self.lblDetail2.setText(QtGui.QApplication.translate("fMain", "Method:", None, QtGui.QApplication.UnicodeUTF8))
         self.cmdLagrange.setText(QtGui.QApplication.translate("fMain", "Lagrange", None, QtGui.QApplication.UnicodeUTF8))
         self.cmdFFT.setText(QtGui.QApplication.translate("fMain", "FFT", None, QtGui.QApplication.UnicodeUTF8))
@@ -199,24 +198,24 @@ class fMain(QtGui.QDialog):
                 q = np.append(q, [0])
         p = np.matrix(p[:n]).transpose()
         q = np.matrix(q[:n]).transpose()
-        out += "coeficientes p:\n"
+        out += "coeficientes de a:\n"
         out += str(p) + "\n"
-        out += "coeficientes q:\n"
+        out += "coeficientes de b:\n"
         out += str(q) + "\n"
 
         # Matriz vandermode
         vnd = np.matrix(np.vander(range(n), increasing=True))
-        out += "vandermond: \n"
+        out += "Vk: \n"
         out += str(vnd) + "\n"
 
         # DFT p
         dftp = vnd * p
-        out += "dftp:\n"
+        out += "dft2n(a):\n"
         out += str(dftp) + "\n"
 
         # DFT q
         dftq = vnd * q
-        out += "dftq:\n"
+        out += "dft2n(b):\n"
         out += str(dftq) + "\n"
 
         # Producto escalar
@@ -224,8 +223,11 @@ class fMain(QtGui.QDialog):
         out += "yk:\n"
         out += str(yk) + "\n"
 
+        out += "Vk**-1\n"
+        out += str(vnd.I) + "\n"
+
         a = vnd.I*yk
-        out += "a:\n"
+        out += "c:\n"
         out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
@@ -253,24 +255,24 @@ class fMain(QtGui.QDialog):
                 q = np.append(q, [0])
         p = np.matrix(p[:n]).transpose()
         q = np.matrix(q[:n]).transpose()
-        out += "coeficientes p:\n"
+        out += "coeficientes de a:\n"
         out += str(p) + "\n"
-        out += "coeficientes q:\n"
+        out += "coeficientes de b:\n"
         out += str(q) + "\n"
 
         # Matriz vandermode
         vnd = complex_matrix(n)
-        out += "vandermond: \n"
+        out += "Vk(j): \n"
         out += str(vnd) + "\n"
 
         # DFT p
         dftp = vnd * p
-        out += "dftp:\n"
+        out += "dft2n(a):\n"
         out += str(dftp) + "\n"
 
         # DFT q
         dftq = vnd * q
-        out += "dftq:\n"
+        out += "dft2n(b):\n"
         out += str(dftq) + "\n"
 
         # Producto escalar
@@ -278,8 +280,11 @@ class fMain(QtGui.QDialog):
         out += "yk:\n"
         out += str(yk) + "\n"
 
+        out += "Vk(j)**-1\n"
+        out += str(inv(vnd)) + "\n"
+
         a = inv(vnd)*yk
-        out += "a:\n"
+        out += "c:\n"
         out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
