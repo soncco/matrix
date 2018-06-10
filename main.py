@@ -5,7 +5,6 @@ import sys
 import numpy as np
 from sympy import Symbol,expand
 from PySide import QtCore, QtGui
-
 from numpy.linalg import inv
 from scipy.interpolate import lagrange as lagrange_interpolation
 
@@ -20,9 +19,9 @@ class fMain(QtGui.QDialog):
     def setupUi(self, fMain):
         fMain.setObjectName("fMain")
         fMain.setWindowModality(QtCore.Qt.ApplicationModal)
-        fMain.resize(569, 504)
-        self.verticalLayout_10 = QtGui.QVBoxLayout(fMain)
-        self.verticalLayout_10.setObjectName("verticalLayout_10")
+        fMain.resize(700, 600)
+        self.verticalLayout_2 = QtGui.QVBoxLayout(fMain)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.fraInputs = QtGui.QGroupBox(fMain)
@@ -34,20 +33,12 @@ class fMain(QtGui.QDialog):
         self.lblDetail = QtGui.QLabel(self.fraInputs)
         self.lblDetail.setObjectName("lblDetail")
         self.verticalLayout_6.addWidget(self.lblDetail)
-        self.pnlPolyPx = QtGui.QFrame(self.fraInputs)
-        self.pnlPolyPx.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.pnlPolyPx.setFrameShadow(QtGui.QFrame.Raised)
-        self.pnlPolyPx.setObjectName("pnlPolyPx")
-        self.verticalLayout_4 = QtGui.QVBoxLayout(self.pnlPolyPx)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.verticalLayout_2 = QtGui.QVBoxLayout()
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.lblPolyPx = QtGui.QLabel(self.pnlPolyPx)
+        self.lblPolyPx = QtGui.QLabel(self.fraInputs)
         self.lblPolyPx.setObjectName("lblPolyPx")
         self.horizontalLayout.addWidget(self.lblPolyPx)
-        self.txtPolyPx = QtGui.QLineEdit(self.pnlPolyPx)
+        self.txtPolyPx = QtGui.QLineEdit(self.fraInputs)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -55,27 +46,17 @@ class fMain(QtGui.QDialog):
         self.txtPolyPx.setSizePolicy(sizePolicy)
         self.txtPolyPx.setObjectName("txtPolyPx")
         self.horizontalLayout.addWidget(self.txtPolyPx)
-        self.txtPolyPxFull = QtGui.QLineEdit(self.pnlPolyPx)
+        self.txtPolyPxFull = QtGui.QLineEdit(self.fraInputs)
         self.txtPolyPxFull.setReadOnly(True)
         self.txtPolyPxFull.setObjectName("txtPolyPxFull")
         self.horizontalLayout.addWidget(self.txtPolyPxFull)
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
-        self.verticalLayout_4.addLayout(self.verticalLayout_2)
-        self.verticalLayout_6.addWidget(self.pnlPolyPx)
-        self.pnlPolyQx = QtGui.QFrame(self.fraInputs)
-        self.pnlPolyQx.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.pnlPolyQx.setFrameShadow(QtGui.QFrame.Raised)
-        self.pnlPolyQx.setObjectName("pnlPolyQx")
-        self.verticalLayout_5 = QtGui.QVBoxLayout(self.pnlPolyQx)
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.verticalLayout_3 = QtGui.QVBoxLayout()
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.verticalLayout_6.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.lblPolyQx = QtGui.QLabel(self.pnlPolyQx)
+        self.lblPolyQx = QtGui.QLabel(self.fraInputs)
         self.lblPolyQx.setObjectName("lblPolyQx")
         self.horizontalLayout_2.addWidget(self.lblPolyQx)
-        self.txtPolyQx = QtGui.QLineEdit(self.pnlPolyQx)
+        self.txtPolyQx = QtGui.QLineEdit(self.fraInputs)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -83,44 +64,38 @@ class fMain(QtGui.QDialog):
         self.txtPolyQx.setSizePolicy(sizePolicy)
         self.txtPolyQx.setObjectName("txtPolyQx")
         self.horizontalLayout_2.addWidget(self.txtPolyQx)
-        self.txtPolyQxFull = QtGui.QLineEdit(self.pnlPolyQx)
+        self.txtPolyQxFull = QtGui.QLineEdit(self.fraInputs)
         self.txtPolyQxFull.setReadOnly(True)
         self.txtPolyQxFull.setObjectName("txtPolyQxFull")
         self.horizontalLayout_2.addWidget(self.txtPolyQxFull)
-        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
-        self.verticalLayout_5.addLayout(self.verticalLayout_3)
-        self.verticalLayout_6.addWidget(self.pnlPolyQx)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         self.lblDetail2 = QtGui.QLabel(self.fraInputs)
         self.lblDetail2.setObjectName("lblDetail2")
         self.verticalLayout_6.addWidget(self.lblDetail2)
-        self.pnlMethods = QtGui.QFrame(self.fraInputs)
-        self.pnlMethods.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.pnlMethods.setFrameShadow(QtGui.QFrame.Raised)
-        self.pnlMethods.setObjectName("pnlMethods")
-        self.horizontalLayout_4 = QtGui.QHBoxLayout(self.pnlMethods)
-        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.cmdLagrange = QtGui.QPushButton(self.pnlMethods)
+        self.cmdLagrange = QtGui.QPushButton(self.fraInputs)
         self.cmdLagrange.setEnabled(False)
+        self.cmdLagrange.setAutoDefault(False)
         self.cmdLagrange.setObjectName("cmdLagrange")
         self.horizontalLayout_3.addWidget(self.cmdLagrange)
-        self.cmdFFT = QtGui.QPushButton(self.pnlMethods)
+        self.cmdFFT = QtGui.QPushButton(self.fraInputs)
         self.cmdFFT.setEnabled(False)
         self.cmdFFT.setAutoDefault(False)
-        self.cmdFFT.setDefault(True)
+        self.cmdFFT.setDefault(False)
         self.cmdFFT.setObjectName("cmdFFT")
         self.horizontalLayout_3.addWidget(self.cmdFFT)
-        self.cmdFFTi = QtGui.QPushButton(self.pnlMethods)
+        self.cmdFFTi = QtGui.QPushButton(self.fraInputs)
         self.cmdFFTi.setEnabled(False)
+        self.cmdFFTi.setAutoDefault(False)
         self.cmdFFTi.setObjectName("cmdFFTi")
         self.horizontalLayout_3.addWidget(self.cmdFFTi)
-        self.cmdBitReverso = QtGui.QPushButton(self.pnlMethods)
+        self.cmdBitReverso = QtGui.QPushButton(self.fraInputs)
         self.cmdBitReverso.setEnabled(False)
+        self.cmdBitReverso.setAutoDefault(False)
         self.cmdBitReverso.setObjectName("cmdBitReverso")
         self.horizontalLayout_3.addWidget(self.cmdBitReverso)
-        self.horizontalLayout_4.addLayout(self.horizontalLayout_3)
-        self.verticalLayout_6.addWidget(self.pnlMethods)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_3)
         self.verticalLayout_7.addLayout(self.verticalLayout_6)
         self.verticalLayout.addWidget(self.fraInputs)
         self.fraResults = QtGui.QGroupBox(fMain)
@@ -149,7 +124,7 @@ class fMain(QtGui.QDialog):
         self.verticalLayout_8.addWidget(self.txtProcess)
         self.verticalLayout_9.addLayout(self.verticalLayout_8)
         self.verticalLayout.addWidget(self.fraResults)
-        self.verticalLayout_10.addLayout(self.verticalLayout)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
 
         self.retranslateUi(fMain)
         QtCore.QMetaObject.connectSlotsByName(fMain)
@@ -160,12 +135,12 @@ class fMain(QtGui.QDialog):
         self.lblDetail.setText(QtGui.QApplication.translate("fMain", "Enter two polynomials:", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyPx.setText(QtGui.QApplication.translate("fMain", "P(x) =", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyQx.setText(QtGui.QApplication.translate("fMain", "Q(x) =", None, QtGui.QApplication.UnicodeUTF8))
-        self.lblDetail2.setText(QtGui.QApplication.translate("fMain", "Select method(s):", None, QtGui.QApplication.UnicodeUTF8))
+        self.lblDetail2.setText(QtGui.QApplication.translate("fMain", "Method:", None, QtGui.QApplication.UnicodeUTF8))
         self.cmdLagrange.setText(QtGui.QApplication.translate("fMain", "Lagrange", None, QtGui.QApplication.UnicodeUTF8))
         self.cmdFFT.setText(QtGui.QApplication.translate("fMain", "FFT", None, QtGui.QApplication.UnicodeUTF8))
         self.cmdFFTi.setText(QtGui.QApplication.translate("fMain", "FFT(i)", None, QtGui.QApplication.UnicodeUTF8))
         self.cmdBitReverso.setText(QtGui.QApplication.translate("fMain", "Bit reverse", None, QtGui.QApplication.UnicodeUTF8))
-        self.fraResults.setTitle(QtGui.QApplication.translate("fMain", "Results", None, QtGui.QApplication.UnicodeUTF8))
+        self.fraResults.setTitle(QtGui.QApplication.translate("fMain", "Result", None, QtGui.QApplication.UnicodeUTF8))
         self.lblPolyRx.setText(QtGui.QApplication.translate("fMain", "R(x) =", None, QtGui.QApplication.UnicodeUTF8))
 
     def methodsEnabled(self, value):
@@ -269,24 +244,24 @@ class fMain(QtGui.QDialog):
                 q = np.append(q, [0])
         p = np.matrix(p[:n]).transpose()
         q = np.matrix(q[:n]).transpose()
-        out += "coeficientes p:\n"
+        out += "coeficientes de a:\n"
         out += str(p) + "\n"
-        out += "coeficientes q:\n"
+        out += "coeficientes de b:\n"
         out += str(q) + "\n"
 
         # Matriz vandermode
         vnd = np.matrix(np.vander(range(n), increasing=True))
-        out += "vandermonde: \n"
+        out += "Vk: \n"
         out += str(vnd) + "\n"
 
         # DFT p
         dftp = vnd * p
-        out += "dftp:\n"
+        out += "dft2n(a):\n"
         out += str(dftp) + "\n"
 
         # DFT q
         dftq = vnd * q
-        out += "dftq:\n"
+        out += "dft2n(b):\n"
         out += str(dftq) + "\n"
 
         # Producto escalar
@@ -294,8 +269,11 @@ class fMain(QtGui.QDialog):
         out += "yk:\n"
         out += str(yk) + "\n"
 
+        out += "Vk**-1\n"
+        out += str(vnd.I) + "\n"
+
         a = vnd.I*yk
-        out += "a:\n"
+        out += "c:\n"
         out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
@@ -323,24 +301,24 @@ class fMain(QtGui.QDialog):
                 q = np.append(q, [0])
         p = np.matrix(p[:n]).transpose()
         q = np.matrix(q[:n]).transpose()
-        out += "coeficientes p:\n"
+        out += "coeficientes de a:\n"
         out += str(p) + "\n"
-        out += "coeficientes q:\n"
+        out += "coeficientes de b:\n"
         out += str(q) + "\n"
 
         # Matriz vandermode
         vnd = complex_matrix(n)
-        out += "vandermonde: \n"
+        out += "Vk(j): \n"
         out += str(vnd) + "\n"
 
         # DFT p
         dftp = vnd * p
-        out += "dftp:\n"
+        out += "dft2n(a):\n"
         out += str(dftp) + "\n"
 
         # DFT q
         dftq = vnd * q
-        out += "dftq:\n"
+        out += "dft2n(b):\n"
         out += str(dftq) + "\n"
 
         # Producto escalar
@@ -348,8 +326,11 @@ class fMain(QtGui.QDialog):
         out += "yk:\n"
         out += str(yk) + "\n"
 
+        out += "Vk(j)**-1\n"
+        out += str(inv(vnd)) + "\n"
+
         a = inv(vnd)*yk
-        out += "a:\n"
+        out += "c:\n"
         out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
