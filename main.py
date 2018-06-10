@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import os
 import sys
+import time
 import numpy as np
 from sympy import Symbol,expand
 from PySide import QtCore, QtGui
@@ -195,6 +197,8 @@ class fMain(QtGui.QDialog):
         p = self.px
         q = self.qx
 
+        start_time = time.time()
+
         yp = np.array(tabular(p, n))
         yq = np.array(tabular(q, n))
 
@@ -213,9 +217,14 @@ class fMain(QtGui.QDialog):
 
         rx = lagrange_interpolation(xk, yk)
 
+        elapsed_time = time.time() - start_time
+
         coeficientes = np.around(rx.coefficients, decimals=2)
         out += "coeficientes:\n"
         out += "%s \n" % str(coeficientes)
+
+        out += u"Tiempo de ejecución:\n"
+        out += "%s segundos \n" % str(elapsed_time)
 
         self.rx = rx
 
@@ -249,6 +258,8 @@ class fMain(QtGui.QDialog):
         out += "coeficientes de b:\n"
         out += str(q) + "\n"
 
+        start_time = time.time()
+
         # Matriz vandermode
         vnd = np.matrix(np.vander(range(n), increasing=True))
         out += "Vk: \n"
@@ -277,6 +288,12 @@ class fMain(QtGui.QDialog):
         out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
+
+        elapsed_time = time.time() - start_time
+
+        out += u"Tiempo de ejecución:\n"
+        out += "%s segundos \n" % str(elapsed_time)
+
         x=Symbol('x')
         self.txtPolyRx.setText( str(expand(self.rx(x))) )
         self.txtProcess.setPlainText( out )
@@ -306,6 +323,8 @@ class fMain(QtGui.QDialog):
         out += "coeficientes de b:\n"
         out += str(q) + "\n"
 
+        start_time = time.time()
+
         # Matriz vandermode
         vnd = complex_matrix(n)
         out += "Vk(j): \n"
@@ -334,6 +353,11 @@ class fMain(QtGui.QDialog):
         out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
+
+        elapsed_time = time.time() - start_time
+
+        out += u"Tiempo de ejecución:\n"
+        out += "%s segundos \n" % str(elapsed_time)
 
         x = Symbol('x')
         self.txtPolyRx.setText(str(expand(self.rx(x))))
