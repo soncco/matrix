@@ -335,6 +335,7 @@ class fMain(QtGui.QDialog):
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
 
+        x = Symbol('x')
         self.txtPolyRx.setText(str(expand(self.rx(x))))
         self.txtProcess.setPlainText(out)
     
