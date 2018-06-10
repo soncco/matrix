@@ -6,8 +6,11 @@ import numpy as np
 from sympy import Symbol,expand
 from PySide import QtCore, QtGui
 
-from complex import complex_matrix
 from numpy.linalg import inv
+from scipy.interpolate import lagrange as lagrange_interpolation
+
+from complex import complex_matrix
+from lagrange import tabular
 
 class fMain(QtGui.QDialog):
     def __init__(self, parent = None):
@@ -201,7 +204,50 @@ class fMain(QtGui.QDialog):
 
     @QtCore.Slot()
     def on_cmdLagrange_clicked(self):
-        print("lagrange")
+        out = ""
+        np.set_printoptions(precision=4)
+        # Tamanio de matriz (n)
+        n = 0
+        n = len(self.px)
+        if n < len(self.qx):
+            n = len(self.qx)
+        n *= 2
+        out += "orden n: " + str(n) + "\n"
+
+        xk = np.array([i for i in range(n)])
+
+        # Polinominios a matriz nx1
+        p = self.px
+        q = self.qx
+
+        yp = np.array(tabular(p, n))
+        yq = np.array(tabular(q, n))
+
+        out += "x:\n"
+        out += "%s \n" % str(xk)
+
+        out += "y1:\n"
+        out += "%s \n" % str(yp)
+
+        out += "y2:\n"
+        out += "%s \n" % str(yq)
+        yk = yp * yq
+
+        out += "yk:\n"
+        out += "%s \n" % str(yk)
+
+        rx = lagrange_interpolation(xk, yk)
+
+        coeficientes = np.around(rx.coefficients, decimals=2)
+        out += "coeficientes:\n"
+        out += "%s \n" % str(coeficientes)
+
+        self.rx = rx
+
+        x = Symbol('x')
+        self.txtPolyRx.setText(str(expand(np.poly1d(coeficientes)(x))))
+        self.txtProcess.setPlainText(out)
+
 
     @QtCore.Slot()
     def on_cmdFFT_clicked(self):
@@ -230,7 +276,7 @@ class fMain(QtGui.QDialog):
 
         # Matriz vandermode
         vnd = np.matrix(np.vander(range(n), increasing=True))
-        out += "vandermond: \n"
+        out += "vandermonde: \n"
         out += str(vnd) + "\n"
 
         # DFT p
@@ -284,7 +330,7 @@ class fMain(QtGui.QDialog):
 
         # Matriz vandermode
         vnd = complex_matrix(n)
-        out += "vandermond: \n"
+        out += "vandermonde: \n"
         out += str(vnd) + "\n"
 
         # DFT p
@@ -307,7 +353,7 @@ class fMain(QtGui.QDialog):
         out += str(np.around(a, decimals=2)) + "\n"
 
         self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
-        x = Symbol('x')
+
         self.txtPolyRx.setText(str(expand(self.rx(x))))
         self.txtProcess.setPlainText(out)
     
