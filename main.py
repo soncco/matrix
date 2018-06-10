@@ -191,6 +191,7 @@ class fMain(QtGui.QDialog):
         n *= 2
         out += "orden n: " + str(n) + "\n"
 
+        # Genera el arreglo x
         xk = np.array([i for i in range(n)])
 
         # Polinominios a matriz nx1
@@ -199,7 +200,10 @@ class fMain(QtGui.QDialog):
 
         start_time = time.time()
 
+        # Tabula el arreglo y1
         yp = np.array(tabular(p, n))
+
+        # Tabula el arreglo y2
         yq = np.array(tabular(q, n))
 
         out += "x:\n"
@@ -215,6 +219,7 @@ class fMain(QtGui.QDialog):
         out += "yk:\n"
         out += "%s \n" % str(yk)
 
+        # Realiza la interpolación de lagrange
         rx = lagrange_interpolation(xk, yk)
 
         elapsed_time = time.time() - start_time

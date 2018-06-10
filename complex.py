@@ -3,10 +3,31 @@
 import numpy as np
 from numpy.linalg import inv, det
 
-def indice(n, k):
+def roots(n, k):
+    """
+      Return a root.
+
+      Parameters
+      ----------
+      n : int
+          The length of w.
+      k : int
+          Iteration item
+      
+      Returns
+      -------
+      c : complex
+          A complex root
+
+      Examples
+      --------
+      >>> c = roots(4, 1)
+        1j
+      """
     root = 2 * np.pi * k/n
     w = np.cos(root) + 1j * np.sin(root)
-    return np.round(w)
+    c = np.round(w)
+    return c
 
 def complex_matrix(n):
     """
@@ -42,8 +63,7 @@ def complex_matrix(n):
                 if col == 0:
                     matrix[row, col] = 1
                 else:
-                    #matrix[row, col] = 1j**(col*row)
-                    matrix[row, col] = indice(n, col*row)
+                    matrix[row, col] = roots(n, col*row)
 
     return matrix
 
