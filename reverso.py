@@ -22,10 +22,10 @@ def bit_reverse_copy(a):
     for k in range(n):
         A.append(0)
 
-    
     for k in range(n):
-        f = '{:0%db}' % int(size)
-        index = int(np.binary_repr(a[k])[::1], 2)
+        binary = np.binary_repr(a[k])
+        reverse = binary[::1]
+        index = int(reverse, 2)
         A[index] = a[k]
 
     return A
@@ -50,15 +50,3 @@ def ifft(a):
             k = k + m
     
     return A
-
-
-#print iterative_fft(np.array([2, 1, 0, 0]))
-print ifft(np.array([-2, 1, 0, 0]))
-
-
-
-            
-        
-    
-#print bit_reverse_copy([0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15])
-#print bit_reverse_copy([0, 4, 2, 6])

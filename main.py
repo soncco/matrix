@@ -12,7 +12,7 @@ from scipy.interpolate import lagrange as lagrange_interpolation
 
 from complex import complex_matrix
 from lagrange import tabular
-from reverso import rfft, ifft
+from reverso import rfft, ifft, bit_reverse_copy
 
 class fMain(QtGui.QDialog):
     def __init__(self, parent = None):
@@ -397,7 +397,12 @@ class fMain(QtGui.QDialog):
         out += "coeficientes de a:\n"
         out += str(p) + "\n"
         out += "coeficientes de b:\n"
-        out += str(q) + "\n"
+        out += str(q) + "\n\n"
+
+        out += "a con bit reverso:\n"
+        out += str(bit_reverse_copy(pt)) + "\n"
+        out += "b con bit reverso:\n"
+        out += str(bit_reverse_copy(qt)) + "\n\n"
 
         start_time = time.time()
 
@@ -411,7 +416,7 @@ class fMain(QtGui.QDialog):
         dftq = ifft(qt[:n])
         dftq = np.matrix(dftq).transpose()
         out += "dft2n(b)  con bit reverso:\n"
-        out += str(dftq) + "\n"
+        out += str(dftq) + "\n\n"
 
         # Producto escalar
         yk = np.multiply(dftp, dftq)
