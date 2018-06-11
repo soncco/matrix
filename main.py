@@ -12,6 +12,7 @@ from scipy.interpolate import lagrange as lagrange_interpolation
 
 from complex import complex_matrix
 from lagrange import tabular
+from reverso import rfft, ifft
 
 class fMain(QtGui.QDialog):
     def __init__(self, parent = None):
@@ -370,7 +371,72 @@ class fMain(QtGui.QDialog):
     
     @QtCore.Slot()
     def on_cmdBitReverso_clicked(self):
-        print("Bit reverso")
+        out = ""
+        np.set_printoptions(precision=4)
+        # Tamanio de matriz (n)
+        n = 0
+        n = len(self.px)
+        if n < len(self.qx):
+            n = len(self.qx)
+        n *= 2
+        out += "orden n: " + str(n) + "\n"
+
+        # Polinominios a matriz nx1
+        p = self.px[::-1]
+        q = self.qx[::-1]
+
+        pt = p
+        qt = q
+        for i in range(n):
+                p = np.append(p, [0])
+                q = np.append(q, [0])
+                pt = np.append(pt, [0])
+                qt = np.append(qt, [0])
+        p = np.matrix(p[:n]).transpose()
+        q = np.matrix(q[:n]).transpose()
+        out += "coeficientes de a:\n"
+        out += str(p) + "\n"
+        out += "coeficientes de b:\n"
+        out += str(q) + "\n"
+
+        start_time = time.time()
+
+        # DFT p
+        dftp = ifft(pt[:n])
+        dftp = np.matrix(dftp).transpose()
+        out += "dft2n(a) con bit reverso:\n"
+        out += str(dftp) + "\n"
+
+        # DFT q
+        dftq = ifft(qt[:n])
+        dftq = np.matrix(dftq).transpose()
+        out += "dft2n(b)  con bit reverso:\n"
+        out += str(dftq) + "\n"
+
+        # Producto escalar
+        yk = np.multiply(dftp, dftq)
+        out += "yk:\n"
+        out += str(yk) + "\n"
+
+        vnd = complex_matrix(n)
+        out += "Vk(j)**-1\n"
+        out += str(inv(vnd)) + "\n"
+
+        a = inv(vnd)*yk
+        out += "c:\n"
+        out += str(np.around(a, decimals=2)) + "\n"
+
+        self.rx = np.poly1d(self.px) * np.poly1d(self.qx)
+
+        elapsed_time = time.time() - start_time
+
+        out += u"Tiempo de ejecución:\n"
+        out += "%s segundos \n" % str(elapsed_time)
+
+        x = Symbol('x')
+        self.txtPolyRx.setText(str(expand(self.rx(x))))
+        self.txtProcess.setPlainText(out)
+        
 
 
 def main():
